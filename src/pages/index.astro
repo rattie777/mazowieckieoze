@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
+import Contact from '~/components/widgets/Contact';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 
@@ -45,51 +45,7 @@ const metadata = {
   ]}
 />
 
-  <ContactUs
-  id="form"
-  title="Wypełnij formularz!"
-  subtitle="Skontaktujemy się z Tobą i przygotujemy indywidualną ofertę!"
-  inputs={[
-    {
-      type: 'text',
-      name: 'Typ instalacji',
-      label: 'Typ instalacji'
-    },
-    {
-      type: 'email',
-      name: 'installation',
-      label: 'Montaż',
-    },
-    {
-      type: 'email',
-      name: 'finansing',
-      label: 'Finansowanie',
-    },
-    {
-      type: 'email',
-      name: 'nameSurname',
-      label: 'Imię i nazwisko',
-    },
-    {
-      type: 'email',
-      name: 'phone',
-      label: 'Telefon',
-    },
-    {
-      type: 'email',
-      name: 'email',
-      label: 'Email',
-    },
-  ]}
-  textarea={{
-    label: 'Wiadomość',
-  }}
-  disclaimer={{
-    label:
-      'Wypełniając formularz wyrażasz zgodę na przetwarzanie swoich danych osobowych przez IntegracjaB2B Sp. z o.o. w celu kontaktu i przygotowania oferty. Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Więcej informacji znajdziesz na https://ib2b.pl/polityka-prywatnosci',
-  }}
-  description="Nasz zespół zazwyczaj odpowiada w ciągu 24 godzin w dni robocze. Dziękujemy za Twoje zgłoszenie!"
-/>
+  <Contact client:load/>
 
   <!-- FAQs Widget ******************* -->
 
