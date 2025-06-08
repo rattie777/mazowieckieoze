@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 
+import { useEffect } from "react";
+
 export default function Contact() {
   const [status, setStatus] = useState("");
   const [btnText, setBtnText] = useState("Wyślij zgłoszenie");
   const [disabled, setDisabled] = useState(false);
+
+  function getOrCreateVisitorId() {
+    let id = localStorage.getItem("visitor_id");
+    if (!id) {
+      id = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2, 12);
+      localStorage.setItem("visitor_id", id);
+    }
+    return id;
+  }
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    const visitorId = getOrCreateVisitorId();
+    fetch(`https://script.google.com/macros/s/AKfycbxwsv6oZCP2HmgUEmJHjpNoYryvgSVqJtbz8iv974VXRGKUpOkVGr8LoqXTPRZZ42iQ8A/exec?visitor=${visitorId}`)
+  }, []);
 
   async function wyslijFormularz(e) {
     e.preventDefault();
@@ -19,6 +36,7 @@ export default function Contact() {
       return;
     }
 
+    const visitorId = getOrCreateVisitorId();
     const data = {
       typ_instalacji: form.typ_instalacji.value,
       montaz: form.montaz.value,
@@ -28,13 +46,15 @@ export default function Contact() {
       telefon: form.telefon.value,
       email: form.email.value,
       wiadomosc: form.wiadomosc.value,
+      visitor: visitorId,
     };
     const formData = new FormData();
+    // biome-ignore lint/complexity/noForEach: <explanation>
     Object.entries(data).forEach(([k, v]) => formData.append(k, v));
   
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbwCvYTKiSqSOrlF6U4OLkqqChkZKJUXySqAdLI2VqSOefbNWJrrjdrD6jGCBb8UMq2fWw/exec",
+        "https://script.google.com/macros/s/AKfycbxwsv6oZCP2HmgUEmJHjpNoYryvgSVqJtbz8iv974VXRGKUpOkVGr8LoqXTPRZZ42iQ8A/exec",
         {
           method: "POST",
           body: formData,
@@ -56,6 +76,14 @@ export default function Contact() {
   }
 
   return (
+    <>
+    <div className="mb-6 text-center">
+      <h2 className="text-2xl font-semibold text-white mb-2">Wypełnij formularz!</h2>
+      <p className="text-base text-white/80">
+        Skontaktujemy się z Tobą i przygotujemy indywidualną ofertę!
+      </p>
+    </div>
+   
     <form
       className="max-w-2xl mx-auto my-10 p-6 rounded-xl bg-[#2EA2DF] bg-opacity-90 shadow"
       onSubmit={wyslijFormularz}
@@ -193,5 +221,6 @@ export default function Contact() {
         {status}
       </div>
     </form>
+    </>
   );
 }
