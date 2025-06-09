@@ -123,7 +123,7 @@ export const footerData = {
     
   ],
   secondaryLinks: [
-    { text: 'Polityka prywatnoci', href: 'https://ib2b.pl/polityka-prywatnosci/' },
+    { text: 'Polityka prywatnoci', href: '/privacy' },
   ],
   socialLinks: [
 

@@ -31,70 +31,50 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
   <div
     class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-amber-300 intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}><img src={logo.src}></a>
-        </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
+  <div class="flex flex-col md:flex-row gap-8 mb-12">
+
+    <!-- Kolumna dane kontaktowe -->
+    <div class="md:w-1/2 space-y-3">
+      <a href={getHomePermalink()}><img src={logo.src} alt="IntegracjaB2B" class="w-40 mb-4" /></a>
+
+      <p class="text-sm">
+        <strong>IntegracjaB2B Sp. z o.o.</strong><br />
+        ul.&nbsp;Warszawska&nbsp;26<br />
+        05-510&nbsp;Konstancin-Jeziorna
+      </p>
+
+      <p class="text-sm">
+        tel.: <a href="tel:+48790466446" class="underline hover:text-primary">+48&nbsp;790&nbsp;466&nbsp;446</a><br />
+        e-mail:&nbsp;<a href="mailto:radek.polak@ib2b.pl" class="underline hover:text-primary">radek.polak@ib2b.pl</a>
+      </p>
+
+      <!-- link do polityki prywatności z istniejącej tablicy secondaryLinks -->
+      {
+        secondaryLinks?.length && (
+          <div class="text-sm">
+            {secondaryLinks.map(({ text, href }, idx) => (
               <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-amber-700 dark:text-amber-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
+                {idx ? ' · ' : ''}
+                <a href={href} class="underline hover:text-primary">{text}</a>
               </>
-            ))
-          }
-        </div>
-      </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-amber-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-amber-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-amber-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
             ))}
-          </ul>
-        ) : (
-          ''
+          </div>
         )
       }
     </div>
+
+    <!-- Kolumna mapa -->
+    <div class="md:w-1/2">
+      <iframe
+        title="Mapa dojazdu"
+        loading="lazy"
+        class="w-full h-64 md:h-56 lg:h-64 rounded-lg shadow-inner"
+        style="border:0"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2447.122396760787!2d21.104623115801304!3d52.07959507974019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47192f08f25c5f3b%3A0x1dfe1f7d77c4f2d8!2sWarszawska%2026%2C%2005-510%20Konstancin-Jeziorna!5e0!3m2!1spl!2spl!4v1717948800000!5m2!1spl!2spl"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>  
+
   </div>
 </footer>

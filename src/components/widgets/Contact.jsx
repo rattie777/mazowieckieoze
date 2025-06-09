@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useEffect } from "react";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxIGGvrVT2fvdDnaDI-GbPRbow19qFQsUQQWMJRnY8b8w8ZPJO_dyV18cd9en0SJD5sTQ/exec"
 
 export default function Contact() {
   const [status, setStatus] = useState("");
@@ -19,7 +19,20 @@ export default function Contact() {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const visitorId = getOrCreateVisitorId();
-    fetch(`https://script.google.com/macros/s/AKfycbxwsv6oZCP2HmgUEmJHjpNoYryvgSVqJtbz8iv974VXRGKUpOkVGr8LoqXTPRZZ42iQ8A/exec?visitor=${visitorId}`)
+    const handle = () => {
+      fetch(`${GOOGLE_SCRIPT_URL}?visitor=${visitorId}`)
+      window.removeEventListener("mousemove", handle);
+      window.removeEventListener("keydown", handle);
+      window.removeEventListener("touchstart", handle);
+    };
+    window.addEventListener("mousemove", handle);
+    window.addEventListener("keydown", handle);
+    window.addEventListener("touchstart", handle);
+    return () => {
+      window.removeEventListener("mousemove", handle);
+      window.removeEventListener("keydown", handle);
+      window.removeEventListener("touchstart", handle);
+    };
   }, []);
 
   async function wyslijFormularz(e) {
@@ -54,7 +67,7 @@ export default function Contact() {
   
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbxwsv6oZCP2HmgUEmJHjpNoYryvgSVqJtbz8iv974VXRGKUpOkVGr8LoqXTPRZZ42iQ8A/exec",
+        GOOGLE_SCRIPT_URL,
         {
           method: "POST",
           body: formData,
@@ -79,12 +92,17 @@ export default function Contact() {
     <>
     <div className="mb-6 text-center">
       <h2 className="text-2xl font-semibold text-white mb-2">Wypełnij formularz!</h2>
+      <p>
+        Lub zadzwoń pod numer tel.: <a href="tel:+48790466446" class="underline text-primary hover:text-secondary">+48&nbsp;790&nbsp;466&nbsp;446</a><br />
+      </p>
+
       <p className="text-base text-white/80">
         Skontaktujemy się z Tobą i przygotujemy indywidualną ofertę!
       </p>
     </div>
    
     <form
+      id="form"
       className="max-w-2xl mx-auto my-10 p-6 rounded-xl bg-[#2EA2DF] bg-opacity-90 shadow"
       onSubmit={wyslijFormularz}
       autoComplete="off"
@@ -193,6 +211,17 @@ export default function Contact() {
         />
       </div>
       <div className="mb-4">
+        <label htmlFor="email" className="block text-base mb-1 text-white">
+          Preferowane godziny kontaktu
+        </label>
+        <input
+          id="hours"
+          name="hours"
+          type="text"
+          className="block w-full rounded-lg border border-white bg-[#2EA2DF] bg-opacity-80 text-white text-base p-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166] focus:border-[#FFD166] transition-all"
+        />
+      </div>
+      <div className="mb-4">
         <label htmlFor="wiadomosc" className="block text-base mb-1 text-white">
           Wiadomość
         </label>
@@ -206,7 +235,7 @@ export default function Contact() {
       <div className="mb-4 flex items-start">
         <input type="checkbox" id="rodo" required className="mt-1 mr-2 accent-[#FFD166] scale-110" />
         <label htmlFor="rodo" className="text-sm text-gray-100">
-          Wypełniając formularz wyrażasz zgodę na przetwarzanie swoich danych osobowych przez IntegracjaB2B Sp. z o.o. w celu kontaktu i przygotowania oferty. Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Więcej informacji znajdziesz na <a href="https://ib2b.pl/polityka-prywatnosci" target="_blank" className="underline text-yellow-200">https://ib2b.pl/polityka-prywatnosci</a>
+          Wypełniając formularz wyrażasz zgodę na przetwarzanie swoich danych osobowych przez IntegracjaB2B Sp. z o.o. w celu kontaktu i przygotowania oferty. Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Więcej informacji znajdziesz w naszej <a href="https://mazowieckieoze.pl/privacy" target="_blank" className="underline text-yellow-200">polityce prywatności</a>.
         </label>
       </div>
       <button
