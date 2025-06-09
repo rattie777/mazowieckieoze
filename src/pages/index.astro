@@ -8,12 +8,23 @@ import Stats from '~/components/widgets/Stats.astro';
 
 const metadata = {
   title: 'IntegracjaB2B — ZARABIAJ KIEDY INNI TYLKO ŁADUJĄ',
+  description: "Przydomowe instalacje fotowoltaiczne z inteligentnym magazynem energii. 6 lat doświadczenia, 3000 kW wykonanych instalacji, lokalny serwis Konstancin-Jeziorna / Warszawa.",
+  canonical: "https://mazowieckieoze.pl/",
+  keywords: [
+    'fotowoltaika',
+    'magazyn energii',
+    'integracjaB2B',
+    'Mój Prąd 2025',
+    'instalacja PV',
+    'Konstancin-Jeziorna',
+    'Warszawa'
+  ],
+  lang: "pl",
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
 
   <Hero
     actions={[
@@ -47,8 +58,6 @@ const metadata = {
 
   <Contact client:load/>
 
-  <!-- FAQs Widget ******************* -->
-
   <FAQs
     title="Często zadawane pytania"
     subtitle="Najczęściej zadawane pytania na temat fotowoltaiki i magazynów energii – rozwiewamy Twoje wątpliwości!"
@@ -68,7 +77,7 @@ const metadata = {
       {
         title: 'Jakie są aktualne możliwości dofinansowania do fotowoltaiki i magazynów energii w 2025 roku?',
         description:
-          "W 2025 roku nadal działa program „Mój Prąd”, który obejmuje dofinansowania zarówno na instalacje fotowoltaiczne, jak i na inteligentne magazyny energii. Można uzyskać nawet do  16 000  na zakup i montaż magazynu energii oraz 7 000 na instalację PV. Razem 23.000 PLN. Nasi eksperci pomagają w kompletowaniu dokumentów i składaniu wniosku o dofinansowanie.",
+          "W 2025 roku nadal działa program „Mój Prąd”, który obejmuje dofinansowania zarówno na instalacje fotowoltaiczne, jak i na inteligentne magazyny energii. Można uzyskać nawet do  16 000zł  na zakup i montaż magazynu energii oraz 7 000zł na instalację PV. Razem 23 000zł. Nasi eksperci pomagają w kompletowaniu dokumentów i składaniu wniosku o dofinansowanie.",
       },
       {
         title: "Czy fotowoltaika z magazynem energii opłaca się w obecnych warunkach?",
@@ -79,7 +88,6 @@ const metadata = {
     ]}
   />
 
-  <!-- Stats Widget ****************** -->
 
 
 </Layout>
