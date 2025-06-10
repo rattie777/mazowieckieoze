@@ -1,103 +1,94 @@
 <!DOCTYPE html>
+
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>Ulotka IntegracjaB2B – Fotowoltaika A5</title>
+  <title>Ulotka A5 – IntegracjaB2B</title>
   <style>
-    /* --- Ustawienia do druku A5 --- */
-    @page {
-      size: A5 portrait;
-      margin: 0;
-    }
-    @media print {
-      html, body { width: 148mm; height: 210mm; margin: 0; }
-    }
+    /* --- STRONA A5 (148 × 210 mm) --- */
+    @page { size: A5 portrait; margin: 0; }
+    @media print { html,body { width:148mm; height:210mm; margin:0; } }
 
-    /* --- Reset / podstawa --- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Inter", Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 210mm;
-      background: #0076c9 url('/integra-texture.jpg') center/cover no-repeat;
-      color: #ffffff;
-    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",Arial,sans-serif;}
+    body{padding: 2mm 0mm;display:flex;flex-direction:column;justify-content:space-between;height:210mm;background:#0076c9 url('../assets/images/integra-texture.jpg') center/cover no-repeat;color:#fff;}
+    h1{font-size:20pt;font-weight:700;line-height:1.15;text-align:center;text-transform:uppercase;margin:10mm 10mm 3mm;}
+    h2{font-size:11pt;font-weight:500;text-align:center;margin-bottom:4mm;}
 
-    /* --- Sekcje --- */
-    header {
-      padding: 10mm 10mm 0 10mm;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 21pt;
-      line-height: 1.2;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    header h2 {
-      font-size: 12pt;
-      margin-top: 4mm;
-      font-weight: 500;
-    }
+    section{padding:0mm 8mm;}
 
-    .benefits {
-      padding: 6mm 10mm;
-      font-size: 10pt;
-    }
-    .benefits ul { list-style: disc inside; }
-    .benefits li { margin-bottom: 2mm; }
-    .benefits strong { color: #ffd166; }
+    /* Sekcje treści */
+    .highlights ul{list-style:disc inside;font-size:9.5pt;line-height:1.35;}
+    .highlights li{margin-bottom:2mm;}
+    .highlights strong{color:#ffd166;}
 
-    .map-contact {
-      display: flex;
-      flex-direction: row;
-      padding: 6mm 10mm 10mm;
-      align-items: flex-start;
-      gap: 6mm;
-      font-size: 9pt;
-    }
-    .map-contact .contact {
-      flex: 1;
-    }
-    .map-contact .contact p { margin-bottom: 2mm; }
-    .map-contact .map {
-      flex: 1;
-    }
-    .map-contact img {
-      width: 100%;
-      border-radius: 4mm;
-      box-shadow: 0 0 4mm rgba(0,0,0,.3);
-    }
+    .stats{display:flex;justify-content:space-between;font-size:11pt;margin:6mm 0;gap:4mm;}
+    .stat-box{flex:1;border:2px solid #ffd166;border-radius:4mm;padding:3mm;text-align:center;}
+    .stat-box span{display:block;font-size:14pt;font-weight:700;}
+
+    .faq{margin:4mm 0;font-size:9pt;}
+    .faq h3{font-size:10pt;font-weight:600;margin-bottom:2mm;}
+    .faq p{margin-bottom:2mm;}
+
+    .footer{display:flex;flex-direction:row;gap:6mm;}
+    @media screen and (min-width:768px){.footer{flex-direction:row;} }
+    .contact{flex:1;display:flex;flex-direction:column; justify-content:center; font-size:9pt;}
+    .contact p{margin-bottom:2mm;}
+    .map{flex:1/2;}
+    .map iframe{width:100%;height:55mm;border:0;border-radius:4mm;}  
   </style>
 </head>
 <body>
-  <!-- Nagłówek / Hero -->
-  <header>
-    <h1>Przydomowe instalacje fotowoltaiczne<br/>z inteligentnym magazynem energii</h1>
-    <h2>ZARABIAJ, KIEDY INNI TYLKO ŁADUJĄ</h2>
-  </header>
+  <div style="text-align:center;font-size:14pt;font-weight:700;
+  color:#ffd166;margin-bottom:2mm;">
+<a href="https://mazowieckieoze.pl" style="color:#ffd166;text-decoration:none;">
+www.mazowieckieoze.pl
+</a>
+&nbsp;|&nbsp; +48&nbsp;790&nbsp;466&nbsp;446
+</div>
+  <!-- GŁÓWNE HASŁO -->
+  <h1>Instalacje fotowoltaiczne z inteligentnym magazynem energii</h1>
+  <h2>ZARABIAJ, KIEDY INNI TYLKO ŁADUJĄ</h2>
 
-  <!-- Korzyści + dofinansowanie -->
-  <section class="benefits">
+  <!-- BEZPIECZEŃSTWO / SERWIS / INTELIGENTNE -->
+
+  <section class="highlights">
     <ul>
-      <li><strong>Do 50&nbsp;% dofinansowania (Mój&nbsp;Prąd&nbsp;2025)</strong> – PV + magazyn energii.</li>
-      <li><strong>6&nbsp;lat doświadczenia</strong> i ponad <strong>3000&nbsp;kW</strong> zrealizowanych instalacji.</li>
-      <li><strong>Inteligentne zarządzanie energią</strong> – większe oszczędności, bezpieczeństwo przy blackoutach.</li>
+      <li><strong>Bezpieczeństwo</strong> – lokalny serwis i szybkie wsparcie techniczne.</li>
+      <li><strong>Inteligentne rozwiązania</strong> – magazyn sam optymalizuje ładowanie.</li>
+      <li><strong>Dofinansowanie „Mój&nbsp;Prąd 2025”</strong> – nawet 50 % kosztów PV + magazynu.</li>
     </ul>
   </section>
 
-  <!-- Kontakt + Mapa -->
-  <section class="map-contact">
+  <!-- STATYSTYKI -->
+
+  <section class="stats">
+    <div class="stat-box"><span>6&nbsp;lat</span> doświadczenia</div>
+    <div class="stat-box"><span>3&nbsp;000&nbsp;kW</span> zainstalowanej mocy</div>
+  </section>
+
+  <!-- FAQ (2 kluczowe pytania) -->
+
+  <section class="faq">
+    <h3>Jakie korzyści daje magazyn energii?</h3>
+    <p>Magazyn pozwala wykorzystać 100 % wyprodukowanego prądu, zapewnia zasilanie przy blackoutach i skraca czas zwrotu inwestycji.</p>
+
+<h3>Ile wynosi dofinansowanie w programie „Mój Prąd 2025”?</h3>
+<p>Dotacja sięga nawet 50 % kosztów kwalifikowanych: <strong>do&nbsp;7 tys.&nbsp;zł</strong> na instalację PV i <strong>do&nbsp;16 tys.&nbsp;zł</strong> na magazyn energii.</p>
+
+  </section>
+
+  <!-- KONTAKT + MAPA -->
+
+  <section class="footer">
     <div class="contact">
-      <p><strong>IntegracjaB2B&nbsp;Sp.&nbsp;z&nbsp;o.o.</strong></p>
-      <p>ul.&nbsp;Warszawska&nbsp;26<br/>05‑510 Konstancin‑Jeziorna</p>
-      <p>tel.: <strong>+48&nbsp;790&nbsp;466&nbsp;446</strong><br/>e‑mail: <strong>radek.polak@ib2b.pl</strong></p>
+      <p><strong>IntegracjaB2B Sp. z o.o.</strong></p>
+      <p>ul.&nbsp;Warszawska&nbsp;26<br>05‑520 Konstancin‑Jeziorna</p>
+      <p>tel.: <strong>+48&nbsp;790&nbsp;466&nbsp;446</strong><br>e‑mail: <strong>radek.polak@ib2b.pl</strong></p>
     </div>
     <div class="map">
-      <!-- statyczny embed mapy, bez API -->
-      <img src="https://maps.googleapis.com/maps/api/staticmap?center=52.0795,21.1035&zoom=14&size=300x300&scale=2&markers=color:red%7Clabel:A%7C52.0795,21.1035&key=NO_KEY" alt="Mapa dojazdu – IntegracjaB2B" />
+      <!-- interaktywny embed bez klucza -->
+      <iframe title="Mapa IntegracjaB2B" loading="lazy" allowfullscreen
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2447.122396760787!2d21.104623115801304!3d52.07959507974019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47192f08f25c5f3b%3A0x1dfe1f7d77c4f2d8!2sWarszawska%2026%2C%2005-510%20Konstancin-Jeziorna!5e0!3m2!1spl!2spl!4v1717948800000!5m2!1spl!2spl"></iframe>
     </div>
   </section>
 </body>
